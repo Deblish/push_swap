@@ -6,11 +6,34 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/15 21:26:37 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 00:35:55 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** @description
+** Push one node to the top of the stack
+**
+** @param
+** Pointer to node
+** Pointer to stack
+**
+** @return
+*/
+void	push(t_stack *stack, t_node *node)
+{
+	if (!stack->top || !stack->size)
+	{
+		stack->top = node;
+		stack->size += 1;
+		return ;
+	}
+	node->next = stack->top;
+	stack->top = node;
+	stack->size += 1;
+}
 
 /*
 ** @description
@@ -39,29 +62,6 @@ t_node	*pop(t_stack *stack)
 
 /*
 ** @description
-** Push one node to the top of the stack
-**
-** @param
-** Pointer to node
-** Pointer to stack
-**
-** @return
-*/
-void	push(t_stack *stack, t_node *node)
-{
-	if (!stack->top || !stack->size)
-	{
-		stack->top = node;
-		stack->size += 1;
-		return ;
-	}
-	node->next = stack->top;
-	stack->top = node;
-	stack->size += 1;
-}
-
-/*
-** @description
 ** Swap the first two nodes at the top of stack
 ** Do nothing if there is only one or no nodes
 **
@@ -81,4 +81,29 @@ void	swap(t_stack *stack)
 	below = pop(stack);
 	push(stack, top);
 	push(stack, below);
+}
+
+/*
+** @description
+** Shift up one node in the stack (Top node goes to bottom)
+** Do nothing if there is only one or no nodes
+**
+** @param
+** Pointer to stack
+**
+** @return
+*/
+void	rotate(t_stack *stack)
+{
+	t_node	*ex_top;
+	t_node	*bottom;
+
+	if (stack->size < 2)
+		return ;
+	ex_top = pop(stack);
+	bottom = stack->top;
+	while(bottom->next)
+		bottom = bottom->next;
+	bottom->next = ex_top;
+	stack += 1;
 }
