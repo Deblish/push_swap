@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 01:05:50 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 01:43:19 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 	new_stack->top = NULL;
 	new_stack->size = 0;
 	*stack = new_stack;
+	//change argc
 	while (--argc)
 		push(new_stack, init_node(atoi(argv[argc])));
 }
@@ -39,27 +40,37 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	//t_stack	*b;
+	t_stack	*b;
 	if (argc < 2)
 		return (0);
 	//error -> if arg[n] not integer, argv[n] > int, argv[n] is duplicate
 	init_stack(&a, argc, argv);
-	//swap(a);
+	init_stack(&b, 1, argv);
+	//testing with example in subject
+	swap(a);
+	push(b,pop(a));
+	push(b,pop(a));
+	push(b,pop(a));
+	rotate(a);
+	rotate(b);
 	reverse_rotate(a);
+	reverse_rotate(b);
+	swap(a);
+	push(a, pop(b));
+	push(a, pop(b));
+	push(a, pop(b));
+	//printing stacks
 	t_node	*i = a->top;
 	while (i)
 	{
 		ft_printf("%i\n", i->value);
 		i = i->next;
 	}
-	/*
-	ft_printf("\n");
-	t_node	*j = pop(a);
-	while(j)
+	i = b->top;
+	while (i)
 	{
-		ft_printf("pushed->%i\n", j->value);
-		j = pop(a);
+		ft_printf("\t%i\n", i->value);
+		i = i->next;
 	}
-	*/
 	return 0;
 }
