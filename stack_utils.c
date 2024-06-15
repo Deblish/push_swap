@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 00:35:55 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 01:24:42 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,11 @@ void	swap(t_stack *stack)
 }
 
 /*
+** @note
+** refactoring might be needed: create push_bottom(*stack, *node)
+**
 ** @description
-** Shift up one node in the stack (Top node goes to bottom)
+** Shift up one node in the stack (top node goes to the bottom of the stack)
 ** Do nothing if there is only one or no nodes
 **
 ** @param
@@ -105,5 +108,37 @@ void	rotate(t_stack *stack)
 	while(bottom->next)
 		bottom = bottom->next;
 	bottom->next = ex_top;
-	stack += 1;
+	stack->size += 1;
+}
+
+/*
+** @note
+** refactoring might be needed: create pop_bottom(*stack);
+**
+** @description
+** Shift down one node in the stack (bottom node goes to the top of the stack)
+** Do nothing if there is only one or no nodes
+**
+** @param
+** Pointer to stack
+**
+** @return
+*/
+void	reverse_rotate(t_stack *stack)
+{
+	t_node	*bottom;
+	t_node	*before_bottom;
+
+	if (stack->size < 2)
+		return ;
+	before_bottom = stack->top;
+	bottom = before_bottom->next;
+	while(bottom->next)
+	{
+		before_bottom = bottom;
+		bottom = bottom->next;
+	}
+	before_bottom->next = NULL;
+	stack->size -= 1;
+	push(stack, bottom);
 }

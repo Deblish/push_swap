@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 00:34:10 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 01:05:50 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	//error -> if arg[n] not integer, argv[n] > int, argv[n] is duplicate
 	init_stack(&a, argc, argv);
 	//swap(a);
-	rotate(a);
+	reverse_rotate(a);
 	t_node	*i = a->top;
 	while (i)
 	{
