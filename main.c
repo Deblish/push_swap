@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/15 13:40:40 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/15 21:21:50 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 	new_stack->top = NULL;
 	new_stack->size = 0;
 	*stack = new_stack;
-	while (new_stack->size < (size_t)argc - 1)
-		push(stack, init_node(atoi(argv[new_stack->size + 1])));
+	while (--argc)
+		push(new_stack, init_node(atoi(argv[argc])));
 }
 
 int	main(int argc, char **argv)
@@ -44,11 +44,21 @@ int	main(int argc, char **argv)
 		return (0);
 	//error -> if arg[n] not integer, argv[n] > int, argv[n] is duplicate
 	init_stack(&a, argc, argv);
+	//swap(a);
 	t_node	*i = a->top;
 	while (i)
 	{
 		ft_printf("%i\n", i->value);
 		i = i->next;
 	}
+	/*
+	ft_printf("\n");
+	t_node	*j = pop(a);
+	while(j)
+	{
+		ft_printf("pushed->%i\n", j->value);
+		j = pop(a);
+	}
+	*/
 	return 0;
 }

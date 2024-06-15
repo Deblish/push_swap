@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/14 12:42:46 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:56:53 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,70 @@
 
 /*
 ** @description
-** Swap the first 2 elements at the top of stack x.
-** Do nothing if there is only one or no elements.
+** Pop the top node of the stack
+** Do nothing if there is no node
 **
 ** @param
-** paramName Description of the parameter.
+** Pointer to stack
 **
 ** @return
-
-void	swap(t_stack *x)
-{
-	return ;
-}
-
-
-void	sa(t_stack *a)
-{
-	return ;
-}
-
-
-void	sb(t_stack *b)
-{
-	return ;
-}
-
-void	ss(t_stack *a, t_stack *b)
-{
-	return ;
-}
+** Pointer to popped node or
+** NULL if stack is empty
 */
-
-void push(t_stack **stack, t_node *new_node)
+t_node	*pop(t_stack *stack)
 {
-	t_stack	*aux_stack;
+	t_node	*popped;
 
-	aux_stack = *stack;
-	if (!aux_stack->top || !aux_stack->size)
+	if (!stack->top || !stack->size)
+		return (NULL);
+	popped = stack->top;
+	stack->top = popped->next;
+	stack->size -= 1;
+	return (popped);
+}
+
+/*
+** @description
+** Push one node to the top of the stack
+**
+** @param
+** Pointer to node
+** Pointer to stack
+**
+** @return
+*/
+void	push(t_stack *stack, t_node *node)
+{
+	if (!stack->top || !stack->size)
 	{
-		aux_stack->top = new_node;
-		aux_stack->size += 1;
+		stack->top = node;
+		stack->size += 1;
 		return ;
 	}
-	new_node->next = aux_stack->top;
-	aux_stack->top = new_node;
-	aux_stack->size += 1;
+	node->next = stack->top;
+	stack->top = node;
+	stack->size += 1;
+}
+
+/*
+** @description
+** Swap the first two nodes at the top of stack
+** Do nothing if there is only one or no nodes
+**
+** @param
+** Pointer to stack
+**
+** @return
+*/
+void	swap(t_stack *stack)
+{
+	t_node *top;
+	t_node *below;
+
+	if (stack->size < 2)
+		return ;
+	top = pop(stack);
+	below = pop(stack);
+	push(stack, top);
+	push(stack, below);
 }

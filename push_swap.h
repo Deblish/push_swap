@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/14 12:27:38 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/15 19:56:03 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_stack
 	size_t	size;
 }	t_stack;
 
-void push(t_stack **stack, t_node *new_node);
+t_node	*pop(t_stack *stack);
+void push(t_stack *stack, t_node *new_node);
+void	swap(t_stack *stack);
 
 #endif
