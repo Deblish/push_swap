@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/15 19:56:53 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/15 21:26:37 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_node	*pop(t_stack *stack)
 	popped = stack->top;
 	stack->top = popped->next;
 	stack->size -= 1;
+	popped->next = NULL;
 	return (popped);
 }
 
