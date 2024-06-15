@@ -1,60 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 07:29:11 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/12 10:55:15 by aapadill         ###   ########.fr       */
+/*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
+/*   Updated: 2024/06/14 12:42:46 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
+#include "push_swap.h"
 
 /*
 ** @description
-** Swap the first 2 elements at the top of stack a.
+** Swap the first 2 elements at the top of stack x.
 ** Do nothing if there is only one or no elements.
 **
 ** @param
 ** paramName Description of the parameter.
 **
 ** @return
-*/
-void	ft_sa()
-{
-	//ft_lstnew()
-	return ;
-}
 
-
-/*
-** @description
-** Swap the first 2 elements at the top of stack b.
-** Do nothing if there is only one or no elements.
-** 
-** @param
-** paramName Description of the parameter.
-**
-** @return
-*/
-void	ft_sb()
+void	swap(t_stack *x)
 {
 	return ;
 }
 
 
-/*
-** @description
-** sa and sb at the same time.
-**
-** @param
-** paramName Description of the parameter.
-**
-** @return
-*/
-void	ft_ss()
+void	sa(t_stack *a)
 {
 	return ;
+}
+
+
+void	sb(t_stack *b)
+{
+	return ;
+}
+
+void	ss(t_stack *a, t_stack *b)
+{
+	return ;
+}
+*/
+
+void push(t_stack **stack, t_node *new_node)
+{
+	t_stack	*aux_stack;
+
+	aux_stack = *stack;
+	if (!aux_stack->top || !aux_stack->size)
+	{
+		aux_stack->top = new_node;
+		aux_stack->size += 1;
+		return ;
+	}
+	new_node->next = aux_stack->top;
+	aux_stack->top = new_node;
+	aux_stack->size += 1;
 }

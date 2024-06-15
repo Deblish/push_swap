@@ -1,19 +1,24 @@
 NAME = push_swap
 
-INC_DIR = ./include
-SRC_DIR = ./src
-
 CC = cc
-CFLAGS = -I$(INC_DIR) -Wall -Wextra -Werror -Wsign-conversion
+CFLAGS = -Wall -Wextra -Werror #-Wsign-conversion
 
-SRC_SOURCES = $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/ft_program.c \
+SRC_SOURCES = main.c \
+			  stack_utils.c \
+			  ../libft/ft_atoi.c \
+			  ../libft/ft_isdigit.c \
+			  ../ft_printf/src/ft_printf.c \
+			  ../ft_printf/src/ft_putchar.c \
+			  ../ft_printf/src/ft_putnbr.c \
+			  ../ft_printf/src/ft_putnbr_u.c \
+			  ../ft_printf/src/ft_putstr.c \
+			  ../ft_printf/src/ft_strlen.c \
 
 SRC_OBJECTS = $(SRC_SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(SRC_OBJECTS)

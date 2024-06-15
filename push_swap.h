@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/12 07:50:53 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:27:38 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../ft_printf/include/ft_printf.h"
+# include "../libft/libft.h"
 
 typedef struct	s_node
 {
-	long			value;
+	int			value; //maybe long
 	struct s_node	*next;
+	//struct s_node	*prev;
 }	t_node;
+
+typedef struct s_stack
+{
+	t_node	*top;
+	size_t	size;
+}	t_stack;
+
+void push(t_stack **stack, t_node *new_node);
 
 #endif
