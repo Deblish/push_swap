@@ -5,6 +5,9 @@ CFLAGS = -Wall -Wextra -Werror #-Wsign-conversion
 
 SRC_SOURCES = main.c \
 			  stack_utils.c \
+			  stack_operations.c \
+			  stack_operations_two.c \
+			  stack_operations_three.c \
 			  ../libft/ft_atoi.c \
 			  ../libft/ft_isdigit.c \
 			  ../ft_printf/src/ft_printf.c \

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 01:24:42 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 01:49:01 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	swap(t_stack *stack)
 
 /*
 ** @note
-** refactoring might be needed: create push_bottom(*stack, *node)
+** Refactoring might be needed: create push_bottom(*stack, *node)
 **
 ** @description
 ** Shift up one node in the stack (top node goes to the bottom of the stack)
@@ -113,7 +113,7 @@ void	rotate(t_stack *stack)
 
 /*
 ** @note
-** refactoring might be needed: create pop_bottom(*stack);
+** Refactoring might be needed: create pop_bottom(*stack);
 **
 ** @description
 ** Shift down one node in the stack (bottom node goes to the top of the stack)

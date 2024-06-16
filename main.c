@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 01:43:19 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 14:09:27 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ int	main(int argc, char **argv)
 	init_stack(&a, argc, argv);
 	init_stack(&b, 1, argv);
 	//testing with example in subject
-	swap(a);
-	push(b,pop(a));
-	push(b,pop(a));
-	push(b,pop(a));
-	rotate(a);
-	rotate(b);
-	reverse_rotate(a);
-	reverse_rotate(b);
-	swap(a);
-	push(a, pop(b));
-	push(a, pop(b));
-	push(a, pop(b));
+	sa(a);
+	pb(a,b);
+	pb(a,b);
+	pb(a,b);
+	ra(a);
+	rb(b);
+	rra(a);
+	rrb(b);
+	sa(a);
+	pa(a,b);
+	pa(a,b);
+	pa(a,b);
 	//printing stacks
 	t_node	*i = a->top;
 	while (i)
