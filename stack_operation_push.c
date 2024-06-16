@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations_three.c                           :+:      :+:    :+:   */
+/*   stack_operation_push.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 14:01:23 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 14:06:05 by aapadill         ###   ########.fr       */
+/*   Created: 2024/06/16 14:17:45 by aapadill          #+#    #+#             */
+/*   Updated: 2024/06/16 14:18:02 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_stack *a)
+void	pa(t_stack *a, t_stack *b)
 {
-	reverse_rotate(a);
-	ft_printf("rra\n");
+	t_node	*node;
+
+	node = pop(b);
+	if (node)
+		push(a, node);
+	ft_printf("pa\n");
 }
 
-void	rrb(t_stack *b)
+void	pb(t_stack *a, t_stack *b)
 {
-	reverse_rotate(b);
-	ft_printf("rrb\n");
-}
+	t_node	*node;
 
-void	rrr(t_stack *a, t_stack *b)
-{
-	reverse_rotate(a);
-	reverse_rotate(b);
-	ft_printf("rrr\n");
+	node = pop(a);
+	if (node)
+		push(b, node);
+	ft_printf("pb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 14:09:27 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/16 14:31:34 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int	main(int argc, char **argv)
 	pb(a,b);
 	pb(a,b);
 	pb(a,b);
-	ra(a);
-	rb(b);
-	rra(a);
-	rrb(b);
+	rr(a,b);;
+	rrr(a,b);
 	sa(a);
 	pa(a,b);
 	pa(a,b);
