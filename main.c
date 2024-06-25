@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/17 12:34:15 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:43:57 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,52 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 		push(new_stack, init_node(atoi(argv[argc])));
 }
 
+static void	low_extractor(t_stack *a, t_stack *b)
+{
+	t_node	*i;
+	t_node	*low;
+	size_t moves;
+
+	i = a->top;
+	low = i;
+	moves = 0;
+	while(i->next)
+	{
+		i = i->next;
+		moves++;
+		if (i->value < low->value)
+			low = i;
+	}
+	if (low == a->top)
+	{
+		pb(a,b);
+		return ;
+	}
+	if (low == i)
+	{
+		rra(a);
+		pb(a,b);
+		return ;
+	}
+	if (a->size > 1 && low == a->top->next)
+	{
+		sa(a);
+		pb(a,b);
+		return ;
+	}
+	if (moves <= a->size / 2)
+	{
+		while (low != a->top)
+			ra(a);
+		pb(a,b);
+		return ;
+	}
+	while (low != a->top)
+		rra(a);
+	pb(a,b);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -58,6 +104,14 @@ int	main(int argc, char **argv)
 	pa(a,b);
 	pa(a,b);*/
 	//printing stacks
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
+	low_extractor(a, b);
 	t_node	*i = a->top;
 	while (i)
 	{
