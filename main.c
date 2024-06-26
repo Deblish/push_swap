@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/25 16:43:57 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:05:41 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,10 @@ int	main(int argc, char **argv)
 	pa(a,b);
 	pa(a,b);*/
 	//printing stacks
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
-	low_extractor(a, b);
+	while(a->size)
+		low_extractor(a, b);
+	while(b->size)
+		pa(a,b);
 	t_node	*i = a->top;
 	while (i)
 	{
