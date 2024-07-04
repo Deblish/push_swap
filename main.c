@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/26 19:05:41 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:04:51 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 	new_stack->size = 0;
 	*stack = new_stack;
 	//change argc
-	while (--argc)
-		push(new_stack, init_node(atoi(argv[argc])));
+	while (argc)
+		push(new_stack, init_node(atoi(argv[argc--])));
 }
 
+/*
 static void	low_extractor(t_stack *a, t_stack *b)
 {
 	t_node	*i;
@@ -82,30 +83,32 @@ static void	low_extractor(t_stack *a, t_stack *b)
 	pb(a,b);
 	return ;
 }
+*/
 
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int	old_argc;
+
 	if (argc < 2)
 		return (0);
-	//error -> if arg[n] not integer, argv[n] > int, argv[n] is duplicate
+	old_argc = argc;
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ', &argc);
+	if (argc == old_argc)
+		argv++;
+	//while (*argv)
+	//	ft_printf("%s\n", *argv++);
+	while (*argv && ft_strisdigit(*argv))
+		ft_printf("%s\n", *argv++);
+	return 1;
+	//error -> if argv[n] not integer, argv[n] > int, argv[n] is duplicate
 	init_stack(&a, argc, argv);
 	init_stack(&b, 1, argv);
-	/*testing with example in subject
-	sa(a);
-	pb(a,b);
-	pb(a,b);
-	pb(a,b);
-	rr(a,b);;
-	rrr(a,b);
-	sa(a);
-	pa(a,b);
-	pa(a,b);
-	pa(a,b);*/
-	//printing stacks
-	while(a->size)
-		low_extractor(a, b);
+	//while(a->size)
+	//	low_extractor(a, b);
+	/*
 	while(b->size)
 		pa(a,b);
 	t_node	*i = a->top;
@@ -120,5 +123,6 @@ int	main(int argc, char **argv)
 		ft_printf("\t%i\n", i->value);
 		i = i->next;
 	}
+	*/
 	return 0;
 }

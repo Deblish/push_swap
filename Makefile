@@ -11,6 +11,11 @@ SRC_SOURCES = main.c \
 			  stack_operation_rotate.c \
 			  ../libft/ft_atoi.c \
 			  ../libft/ft_isdigit.c \
+			  ../libft/ft_split.c \
+			  ../libft/ft_strchr.c \
+			  ../libft/ft_substr.c \
+			  ../libft/ft_strdup.c \
+			  ../libft/ft_strlcpy.c \
 			  ../ft_printf/src/ft_printf.c \
 			  ../ft_printf/src/ft_putchar.c \
 			  ../ft_printf/src/ft_putnbr.c \
