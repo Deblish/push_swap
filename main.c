@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/04 12:04:51 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:20:55 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 	new_stack->top = NULL;
 	new_stack->size = 0;
 	*stack = new_stack;
-	//change argc
 	while (argc)
-		push(new_stack, init_node(atoi(argv[argc--])));
+		push(new_stack, init_node(ft_atoi(argv[argc--])));
 }
 
 /*
@@ -96,14 +95,12 @@ int	main(int argc, char **argv)
 	old_argc = argc;
 	if (argc == 2)
 		argv = ft_split(argv[1], ' ', &argc);
-	if (argc == old_argc)
+	else if (argc == old_argc)
 		argv++;
-	//while (*argv)
-	//	ft_printf("%s\n", *argv++);
-	while (*argv && ft_strisdigit(*argv))
+	//error -> if argv[n] not integer, argv[n] > int, argv[n] is duplicate
+	while (*argv && ft_isdigit_str(*argv))
 		ft_printf("%s\n", *argv++);
 	return 1;
-	//error -> if argv[n] not integer, argv[n] > int, argv[n] is duplicate
 	init_stack(&a, argc, argv);
 	init_stack(&b, 1, argv);
 	//while(a->size)
