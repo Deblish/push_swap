@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 01:49:01 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:01:17 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	rotate(t_stack *stack)
 	while(bottom->next)
 		bottom = bottom->next;
 	bottom->next = ex_top;
-	stack->size += 1;
 }
 
 /*
@@ -139,6 +138,5 @@ void	reverse_rotate(t_stack *stack)
 		bottom = bottom->next;
 	}
 	before_bottom->next = NULL;
-	stack->size -= 1;
 	push(stack, bottom);
 }
