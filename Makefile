@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-Wsign-conversion
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address #-Wsign-conversion
 
 SRC_SOURCES = main.c \
 			  stack_utils.c \
@@ -9,6 +9,7 @@ SRC_SOURCES = main.c \
 			  stack_operation_swap.c \
 			  stack_operation_reverse.c \
 			  stack_operation_rotate.c \
+			  selection_sort.c \
 			  ../libft/ft_atoi.c \
 			  ../libft/ft_isdigit.c \
 			  ../libft/ft_split.c \

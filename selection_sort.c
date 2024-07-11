@@ -6,12 +6,15 @@
 /*   By: aapadill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:34:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/05 12:35:42 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:07:43 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	low_extractor(t_stack *a, t_stack *b)
+#include "push_swap.h"
+
+void	low_extractor(t_stack *a, t_stack *b)
 {
+	//ft_printf("I entered");
 	t_node	*i;
 	t_node	*low;
 	size_t moves;
