@@ -44,26 +44,19 @@ static int	fill_stack(t_stack *stack, int argc, char **argv)
 	return (1);
 }
 
-static int	init_stack(t_stack **stack, int argc, char **argv)
+static t_stack	*init_stack(int argc, char **argv)
 {
 	//ft_printf("init_stack\n");
 	t_stack	*new_stack;
 
 	new_stack = malloc(sizeof(t_stack));
 	if (!new_stack)
-	{
-		*stack = NULL;
-		return (0);
-	}
+		return (NULL);
 	new_stack->top = NULL;
 	new_stack->size = 0;
-	*stack = new_stack;
 	if (!fill_stack(new_stack, argc, argv))
-	{
-		*stack = NULL;
-		return (0);
-	}
-	return (1);
+		return (NULL);
+	return (new_stack);
 }
 
 int	main(int argc, char **argv)
@@ -71,6 +64,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	int	old_argc;
+	int n;
 
 	if (argc < 2)
 		return (0);
@@ -83,10 +77,12 @@ int	main(int argc, char **argv)
 		argv++;
 	}
 	//error -> argv[n] > int, argv[n] is duplicate
-	//while (*argv && ft_isdigit_str(*argv))
-		//ft_printf("%s\n", *argv++);
-	init_stack(&a, argc, argv); //if a = NULL, error
-	init_stack(&b, 0, argv); //if b = NULL, error, but you gotta free a?
+	n = argc;
+	while (n-- && argv[n] && ft_isdigit_str(argv[n]) && !ft_atoi_overflow(argv[n]))
+		ft_printf("%s\n", argv[n]);
+	return 1;
+	a = init_stack(argc, argv); //if a = NULL, error
+	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
 	while(a->size)
 		low_extractor(a, b);
 	while(b->size)
