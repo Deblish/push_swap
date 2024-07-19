@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/19 16:15:44 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:52:44 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,10 @@ int	main(int argc, char **argv)
 		argc--;
 		argv++;
 	}
-	//error -> argv[n] is duplicate
 	n = argc;
 	while (n--)
 	{
-		if (!argv[n] || ft_atoi_overflow(argv[n]) || has_duplicates(n, argv))
+		if (!argv[n] || int_overflows(argv[n]) || has_duplicates(n, argv))
 		{
 			//ft_printf("%s\n", argv[n]);
 			ft_printf("error\n");

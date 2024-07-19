@@ -18,6 +18,7 @@ SRC_SOURCES = main.c \
 			  ../libft/ft_strdup.c \
 			  ../libft/ft_strlcpy.c \
 			  ../libft/ft_strncmp.c \
+			  ../libft/int_overflows.c \
 			  ../libft/has_duplicates.c \
 			  ../ft_printf/src/ft_printf.c \
 			  ../ft_printf/src/ft_putchar.c \
