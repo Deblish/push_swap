@@ -6,7 +6,7 @@
 /*   By: aapadill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 12:34:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/08 16:07:43 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:11:12 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,12 @@ void	low_extractor(t_stack *a, t_stack *b)
 		rra(a);
 	pb(a,b);
 	return ;
+}
+
+void	selection_sort(t_stack *a, t_stack *b)
+{
+	while(a->size)
+		low_extractor(a, b);
+	while(b->size)
+		pa(a,b);
 }

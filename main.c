@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/11 18:04:51 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:15:44 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,18 @@ static t_stack	*init_stack(int argc, char **argv)
 	return (new_stack);
 }
 
+static void	print_stack(t_node	*i, int option)
+{
+	while (i)
+	{
+		if (option == 1)
+			ft_printf("%i\n", i->value);
+		if (option == 2)
+			ft_printf("\t%i\n", i->value);
+		i = i->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -76,28 +88,20 @@ int	main(int argc, char **argv)
 		argc--;
 		argv++;
 	}
-	//error -> argv[n] > int, argv[n] is duplicate
+	//error -> argv[n] is duplicate
 	n = argc;
-	while (n-- && argv[n] && ft_isdigit_str(argv[n]) && !ft_atoi_overflow(argv[n]))
-		ft_printf("%s\n", argv[n]);
-	return 1;
+	while (n--)
+	{
+		if (!argv[n] || ft_atoi_overflow(argv[n]) || has_duplicates(n, argv))
+		{
+			//ft_printf("%s\n", argv[n]);
+			ft_printf("error\n");
+			return (1);
+		}
+	}
 	a = init_stack(argc, argv); //if a = NULL, error
 	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
-	while(a->size)
-		low_extractor(a, b);
-	while(b->size)
-			pa(a,b);
-	t_node	*i = a->top;
-	while (i)
-	{
-		ft_printf("%i\n", i->value);
-		i = i->next;
-	}
-	i = b->top;
-	while (i)
-	{
-		ft_printf("\t%i\n", i->value);
-		i = i->next;
-	}
+	selection_sort(a, b);
+	print_stack(a->top, 1);
 	return 0;
 }

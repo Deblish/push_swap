@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/08 15:54:46 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:12:01 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
 void	low_extractor(t_stack *a, t_stack *b);
+void	selection_sort(t_stack *a, t_stack *b);
 #endif
