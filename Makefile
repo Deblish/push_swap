@@ -10,6 +10,7 @@ SRC_SOURCES = main.c \
 			  stack_operation_reverse.c \
 			  stack_operation_rotate.c \
 			  selection_sort.c \
+			  algo_utils.c \
 			  ../libft/ft_atoi.c \
 			  ../libft/ft_isdigit.c \
 			  ../libft/ft_split.c \

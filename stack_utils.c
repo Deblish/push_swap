@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/11 18:00:10 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:47:15 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@
 */
 void	push(t_stack *stack, t_node *node)
 {
-	if (!stack->top || !stack->size)
+	update_min_and_max(stack, node);
+	//ft_printf("\tstack_a->max = %i\n", (int)stack->max->value);
+	//ft_printf("\tstack_a->min = %i\n", (int)stack->max->value);
+	if (!stack->top)
 	{
 		stack->top = node;
-		stack->size += 1;
+		stack->size++;
 		return ;
 	}
 	node->next = stack->top;
 	stack->top = node;
-	stack->size += 1;
+	stack->size++;
 }
 
 /*
@@ -50,6 +53,7 @@ void	push(t_stack *stack, t_node *node)
 t_node	*pop(t_stack *stack)
 {
 	t_node	*popped;
+	t_node	*i;
 
 	if (!stack->top || !stack->size)
 		return (NULL);
@@ -57,6 +61,21 @@ t_node	*pop(t_stack *stack)
 	stack->top = popped->next;
 	stack->size -= 1;
 	popped->next = NULL;
+	if (popped == stack->max || popped == stack->min)
+	{
+		stack->max = NULL;
+		stack->min = NULL;
+		i = stack->top;
+		while (i)
+		{
+			update_min_and_max(stack, i);
+			i = i->next;
+		}
+	}
+	//if (stack->max)
+	//	ft_printf("\tstack_a->max = %i\n", (int)stack->max->value);
+	//if (stack->min)
+	//	ft_printf("\tstack_a->min = %i\n", (int)stack->min->value);
 	return (popped);
 }
 

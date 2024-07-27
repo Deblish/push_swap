@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/19 18:12:44 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/07/27 03:06:06 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static t_stack	*init_stack(int argc, char **argv)
 		return (NULL);
 	new_stack->top = NULL;
 	new_stack->size = 0;
+	new_stack->max = NULL;
+	new_stack->min = NULL;
 	if (!fill_stack(new_stack, argc, argv))
 		return (NULL);
 	return (new_stack);
@@ -71,6 +73,7 @@ static void	print_stack(t_node	*i, int option)
 	}
 }
 
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -100,7 +103,37 @@ int	main(int argc, char **argv)
 	}
 	a = init_stack(argc, argv); //if a = NULL, error
 	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
-	selection_sort(a, b);
+	pb(a, b);
+	pb(a, b);
+	pb(a, b);
+	pb(a, b);
+	rb(b);
+	pb(a, b);
+	rb(b);
+	pb(a, b);
+	rb(b);
+	//pb(a, b);
+	//sb(b);
+	ft_printf("\tstack_a->max = %i\n", (int)a->max->value);
+	ft_printf("\tstack_a->min = %i\n", (int)a->min->value);
+	ft_printf("\tstack_b->max = %i\n", (int)b->max->value);
+	ft_printf("\tstack_b->min = %i\n", (int)b->min->value);
+	t_node *current = a->top;
+	while (current)
+	{
+		int one = (int)get_pop_cost(a, current);
+		int two = (int)get_push_cost_b(b, current);
+		printf("\tpop_cost  %i = %i; ", current->value, one);
+		printf(" push_cost to b = %i; sum = %i\n", two, one+two);
+		current = current->next;
+	}
+	ft_printf("is a ordered? %i\n", is_ordered(a, 0));
+	//if (!b->max)
+	//	ft_printf("\tstack_b->max = %p\n", b->max);
+	//if (!b->min)
+	//	ft_printf("\tstack_b->min = %p\n", b->min);
+	//selection_sort(a, b);
 	print_stack(a->top, 1);
+	print_stack(b->top, 2);
 	return 0;
 }
