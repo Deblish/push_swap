@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/01 02:48:45 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/01 03:11:48 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ t_node	*get_node(t_stack *stack, t_node *node)
 	if (node->value < stack->top->value && node->value > current->value)
 		return (current);
 	printf("\t\t\t");
-	return (NULL);
+	//return (NULL);
+	return (stack->top);
 	//return (stack->min);
 }
 
