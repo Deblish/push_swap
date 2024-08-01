@@ -6,10 +6,11 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/27 04:14:11 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/01 02:48:45 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>//------------------erase
 #include "push_swap.h"
 
 void	update_min_and_max(t_stack *stack, t_node *new_node)
@@ -18,6 +19,27 @@ void	update_min_and_max(t_stack *stack, t_node *new_node)
 		stack->max = new_node;
 	if (!stack->min || new_node->value < stack->min->value)
 		stack->min = new_node;
+}
+
+int	is_ordered(t_stack *stack, int from_max)
+{
+	t_node	*first;
+	t_node	*second;
+
+	first = stack->top;
+	second = first->next;
+	while (second)
+	{
+		if (!from_max && first->value > second->value)
+			break;
+		if (from_max && first->value < second->value)
+			break;
+		first = second;
+		second = second->next;
+	}
+	if (!second)
+		return (1);
+	return (0);
 }
 
 size_t	get_pop_cost(t_stack *stack, t_node *stop)
@@ -42,85 +64,131 @@ size_t	get_pop_cost(t_stack *stack, t_node *stop)
 		return (backward);
 }
 
-size_t	get_push_cost_b(t_stack *stack, t_node *node)
+char	*get_pop_op(t_stack *stack, t_node *stop, char op)
 {
-	size_t	reverse;
-	size_t	rotate;
+	size_t	forward;
+	size_t	backward;
 	t_node	*current;
 
-	reverse = 0;
+	forward = 1;
 	current = stack->top;
-	if (!current)
-		return (0);
-	if (is_ordered(stack, 1) && node->value < stack->min->value)
+	while (current && current != stop)
 	{
-		ft_printf("rotate;");
-		return (1); //rotate
-	}
-	while (current->next && current->value > node->value)
-	{
-		reverse++;
+		forward++;
 		current = current->next;
 	}
-	if (!current->next && current->value > node->value)
-		reverse++;
-	rotate = stack->size - reverse + 1;
-	if (reverse < rotate)
+	if (!current)
+		return (NULL);
+	backward = stack->size - forward + 2;
+	if (forward < backward)
 	{
-		if (reverse == 1)
-			ft_printf("swap;");
-		else
-			ft_printf("revers;");
-		return (reverse); //if 1, equivalent to swap
+		if (op == 'a')
+			return ("ra");
+		return ("rb");
 	}
-	ft_printf("rotate;");
-	return (rotate);
+	else
+	{
+		if (op == 'a')
+			return ("rra");
+		return ("rrb");
+	}
 }
 
-/*
-void	algorithm(t_stack *a, t_stack b)
+t_node	*get_node(t_stack *stack, t_node *node)
 {
 	t_node	*current;
-	while(current)
-	{
-		size_t	pop_cost;
-		size_t	push_cost;
-		size_t	total;
-		size_t	best;
-		t_node	*best_candidate;
 
-		best_candidate = NULL;
-		best = INT_MAX;
-		pop_cost = get_pop_cost(a, current);
-		push_cost = get_push_cost_b(b, current);
-		total = pop_cost + push_cost;
-		if (!candidate || total < best)
+	current = stack->top;
+	if (stack->size == 1)
+		return (current);
+	if (node->value > stack->max->value)
+		return (stack->max);
+	if (node->value < stack->min->value)
+		return (stack->max);
+	while (current->next)
+	{
+		if (node->value < current->value)
+			if (node->value > current->next->value)
+				return (current->next); //return (current); 
+		current = current->next;
+	}
+	if (node->value < stack->top->value && node->value > current->value)
+		return (current);
+	printf("\t\t\t");
+	return (NULL);
+	//return (stack->min);
+}
+
+
+void	do_op(t_stack *a, t_stack *b, size_t cost, char *op)
+{
+	if (!op)
+		return ;
+	if (!ft_strncmp(op, "pa", 2))
+		while (cost--)
+			pa(a,b);
+	if (!ft_strncmp(op, "pb", 2))
+		while (cost--)
+			pb(a,b);
+	if (!ft_strncmp(op, "ra", 2))
+		while (cost--)
+			ra(a);
+	if (!ft_strncmp(op, "rb", 2))
+		while (cost--)
+			rb(b);
+	if (!ft_strncmp(op, "sb", 2))
+		while (cost--)
+			sb(b);
+	if (!ft_strncmp(op, "rrb", 3))
+		while (cost--)
+			rrb(b);
+	if (!ft_strncmp(op, "rra", 3))
+		while (cost--)
+			rra(a);
+}
+
+void	do_cheapest_to_b(t_stack *a, t_stack *b)
+{
+	size_t	total;
+	size_t	best;
+	t_node	*cheapest;
+	t_node	*node;
+	t_node	*on_top_of_what;
+	size_t	moves;
+	char	*op;
+
+	cheapest = NULL;
+	best = INT_MAX;
+	node = a->top;
+	while(node)
+	{
+		on_top_of_what = get_node(b, node);
+		//printf("\nstack->max: %i\n", (int)b->max->value);
+		//printf("stack->min: %i\n", (int)b->min->value);
+		printf("node %i on top of %p ; ", node->value, on_top_of_what);
+		total = get_pop_cost(a, node) + get_pop_cost(b, on_top_of_what) - 1;
+		printf("pop_cost: %i ; ", (int)get_pop_cost(a, node));
+		printf("push_cost: %i\n", (int)get_pop_cost(b, on_top_of_what) - 1);
+		if (!cheapest || total < best)
 		{
-			best_candidate = current;
+			cheapest = node;
 			best = total;
 		}
-		current = current->next;
+		node = node->next;
 	}
-}
-*/
+	if (!cheapest)
+		return ;
+	printf("\tbest_node: %i ; total: %i\n", cheapest->value, (int)best);
+	print_stack(a->top, 1);
+	print_stack(b->top, 2);
 
-int	is_ordered(t_stack *stack, int from_max)
-{
-	t_node	*first;
-	t_node	*second;
+	moves = get_pop_cost(b, get_node(b, cheapest)) - 1;
+	op = get_pop_op(b, get_node(b, cheapest), 'b');
+	do_op(a, b, get_pop_cost(a, cheapest) - 1, get_pop_op(a, cheapest, 'a'));
+	do_op(a, b, moves, op);
+	do_op(a, b, 1, "pb");
 
-	first = stack->top;
-	second = first->next;
-	while (second)
-	{
-		if (!from_max && first->value > second->value)
-			break;
-		if (from_max && first->value < second->value)
-			break;
-		first = second;
-		second = second->next;
-	}
-	if (!second)
-		return (1);
-	return (0);
+	printf("\n");
+	print_stack(a->top, 1);
+	print_stack(b->top, 2);
 }

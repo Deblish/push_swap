@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:17:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/06/16 14:18:02 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/01 02:53:40 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	pa(t_stack *a, t_stack *b)
 	node = pop(b);
 	if (node)
 		push(a, node);
+	//else
+	//	ft_printf("b is empty\n");
 	ft_printf("pa\n");
 }
 
@@ -29,5 +31,7 @@ void	pb(t_stack *a, t_stack *b)
 	node = pop(a);
 	if (node)
 		push(b, node);
+	//else
+	//	ft_printf("a is empty\n");
 	ft_printf("pb\n");
 }

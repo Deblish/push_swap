@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/26 17:47:15 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/01 02:53:17 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 void	push(t_stack *stack, t_node *node)
 {
 	update_min_and_max(stack, node);
-	//ft_printf("\tstack_a->max = %i\n", (int)stack->max->value);
-	//ft_printf("\tstack_a->min = %i\n", (int)stack->max->value);
 	if (!stack->top)
 	{
 		stack->top = node;
@@ -36,6 +34,9 @@ void	push(t_stack *stack, t_node *node)
 	node->next = stack->top;
 	stack->top = node;
 	stack->size++;
+	//ft_printf("\tstack->size = %i\n", (int)stack->size);
+	//ft_printf("\tstack->max = %i\n", (int)stack->max->value);
+	//ft_printf("\tstack->min = %i\n", (int)stack->min->value);
 }
 
 /*
@@ -96,13 +97,20 @@ void	swap(t_stack *stack)
 
 	if (stack->size < 2)
 		return ;
-	top = pop(stack);
-	below = pop(stack);
-	push(stack, top);
-	push(stack, below);
+	top = stack->top;
+	below = top->next;
+	top->next = below->next;
+	below->next = top;
+	stack->top = below;
+	//update_min_and_max(stack, top);
+	//update_min_and_max(stack, below);
 }
 
 /*
+** @update
+** Directly manipulating the data, using pop created an invisible bug for the
+** stack->min and stack->max value
+**
 ** @note
 ** Refactoring might be needed: create push_bottom(*stack, *node)
 **
@@ -122,15 +130,20 @@ void	rotate(t_stack *stack)
 
 	if (stack->size < 2)
 		return ;
-	ex_top = pop(stack);
-	bottom = stack->top;
+	ex_top = stack->top;
+	bottom = stack->top->next;
+	stack->top = bottom;
 	while(bottom->next)
 		bottom = bottom->next;
 	bottom->next = ex_top;
-	stack->size += 1;
+	ex_top->next = NULL;
 }
 
 /*
+** @update
+** Same as rotate, push() call is not used anymore, since it created a really
+** invisible bug where some values at stack->min and stack->max weren't correct
+**
 ** @note
 ** Refactoring might be needed: create pop_bottom(*stack);
 **
@@ -158,6 +171,6 @@ void	reverse_rotate(t_stack *stack)
 		bottom = bottom->next;
 	}
 	before_bottom->next = NULL;
-	stack->size -= 1;
-	push(stack, bottom);
+	bottom->next = stack->top;
+	stack->top = bottom;
 }
