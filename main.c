@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/29 19:07:21 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/02 01:44:38 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	main(int argc, char **argv)
 	//while (a->size > 2)
 	pb(a, b);
 	pb(a, b);
-	while (a->size > 2)
+	while (a->size > 3)
 		do_cheapest_to_b(a, b);
 	//ft_printf("is a ordered? %i\n", is_ordered(a, 0));
 	//if (!b->max)
@@ -141,7 +141,7 @@ int	main(int argc, char **argv)
 	//if (!b->min)
 	//	ft_printf("\tstack_b->min = %p\n", b->min);
 	//selection_sort(a, b);
-	//print_stack(a->top, 1);
-	//print_stack(b->top, 2);
+	print_stack(a->top, 1);
+	print_stack(b->top, 2);
 	return 0;
 }

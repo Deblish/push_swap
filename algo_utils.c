@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/01 03:11:48 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/03 13:25:22 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_node	*get_node(t_stack *stack, t_node *node)
 	t_node	*current;
 
 	current = stack->top;
+	if (!stack->size)
+		return (NULL);
 	if (stack->size == 1)
 		return (current);
 	if (node->value > stack->max->value)
@@ -114,7 +116,7 @@ t_node	*get_node(t_stack *stack, t_node *node)
 	}
 	if (node->value < stack->top->value && node->value > current->value)
 		return (current);
-	printf("\t\t\t");
+	//printf("\t\t\t");
 	//return (NULL);
 	return (stack->top);
 	//return (stack->min);
@@ -164,12 +166,10 @@ void	do_cheapest_to_b(t_stack *a, t_stack *b)
 	while(node)
 	{
 		on_top_of_what = get_node(b, node);
-		//printf("\nstack->max: %i\n", (int)b->max->value);
-		//printf("stack->min: %i\n", (int)b->min->value);
-		printf("node %i on top of %p ; ", node->value, on_top_of_what);
+		//printf("node %i on top of %p ; ", node->value, on_top_of_what);
 		total = get_pop_cost(a, node) + get_pop_cost(b, on_top_of_what) - 1;
-		printf("pop_cost: %i ; ", (int)get_pop_cost(a, node));
-		printf("push_cost: %i\n", (int)get_pop_cost(b, on_top_of_what) - 1);
+		//printf("pop_cost: %i ; ", (int)get_pop_cost(a, node));
+		//printf("push_cost: %i\n", (int)get_pop_cost(b, on_top_of_what) - 1);
 		if (!cheapest || total < best)
 		{
 			cheapest = node;
@@ -179,9 +179,9 @@ void	do_cheapest_to_b(t_stack *a, t_stack *b)
 	}
 	if (!cheapest)
 		return ;
-	printf("\tbest_node: %i ; total: %i\n", cheapest->value, (int)best);
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
+	//printf("\tbest_node: %i ; total: %i\n", cheapest->value, (int)best);
+	//print_stack(a->top, 1);
+	//print_stack(b->top, 2);
 
 	moves = get_pop_cost(b, get_node(b, cheapest)) - 1;
 	op = get_pop_op(b, get_node(b, cheapest), 'b');
@@ -189,7 +189,7 @@ void	do_cheapest_to_b(t_stack *a, t_stack *b)
 	do_op(a, b, moves, op);
 	do_op(a, b, 1, "pb");
 
-	printf("\n");
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
+	//printf("\n");
+	//print_stack(a->top, 1);
+	//print_stack(b->top, 2);
 }
