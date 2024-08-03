@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/02 01:44:38 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/03 13:36:08 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int	main(int argc, char **argv)
 	//if (!b->min)
 	//	ft_printf("\tstack_b->min = %p\n", b->min);
 	//selection_sort(a, b);
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
+	//print_stack(a->top, 1);
+	//print_stack(b->top, 2);
 	return 0;
 }
