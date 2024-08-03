@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/03 18:59:09 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:42:11 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,15 @@ void	do_cheapest_to_b(t_stack *a, t_stack *b)
 
 	get_pop_info(a, cheapest, &a_instr, 'a');
 	get_pop_info(b, get_node(b, cheapest), &b_instr, 'b');
+	if (ft_strlen(a_instr.operation) == ft_strlen(b_instr.operation))
+	{
+		if (!ft_strncmp(a_instr.operation, "ra", 2))
+			while(a_instr.cost && b_instr.cost && a_instr.cost-- && b_instr.cost--)
+				rr(a, b);
+		else if (!ft_strncmp(a_instr.operation, "rra", 2))
+			while(a_instr.cost && b_instr.cost && a_instr.cost-- && b_instr.cost--)
+				rrr(a, b);
+	}
 	do_op(a, b, a_instr.cost, a_instr.operation);
 	do_op(a, b, b_instr.cost, b_instr.operation);
 	do_op(a, b, 1, "pb");
