@@ -8,7 +8,7 @@ max_attempts=1000
 attempts=0
 
 while [ "$count" -lt "$NUMBERS_NEEDED" ] && [ "$attempts" -lt "$max_attempts" ]; do
-    num=$((RANDOM % 20000 - 0))  # Generate random number between -10000 and 10000
+    num=$((RANDOM % 20000 - 10000))  # Generate random number between -10000 and 10000
 
     # Check if number is already in the array
     duplicate_found=0

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/03 19:01:07 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/04 15:03:06 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ typedef struct s_stack
 
 typedef struct	s_instruction
 {
-	int	cost;
+	size_t	cost;
 	const char	*operation;
 }	t_instr;
+
+t_node	*init_node(int value);
+int		fill_stack(t_stack *stack, int argc, char **argv);
+t_stack	*init_stack(int argc, char **argv);
+void	print_stack(t_node	*i, int option);
 
 void	push(t_stack *stack, t_node *new_node);
 t_node	*pop(t_stack *stack);
@@ -57,14 +62,14 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
-void	print_stack(t_node	*i, int option);
-
 void	update_min_and_max(t_stack *stack, t_node *new_node);
 int		is_ordered(t_stack *stack, int from_max);
 void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s);
-t_node	*get_node(t_stack *stack, t_node *node);
 void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op);
-void	do_cheapest_to_b(t_stack *a, t_stack *b);
+
+t_node	*get_target_a_to_b(t_stack *stack, t_node *node);
+t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b);
+void	do_cheapest_a_to_b(t_stack *a, t_stack *b);
 
 void	low_extractor(t_stack *a, t_stack *b);
 void	selection_sort(t_stack *a, t_stack *b);

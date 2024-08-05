@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/03 19:42:11 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:42:57 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,34 +82,6 @@ void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 	}
 }
 
-t_node	*get_node(t_stack *stack, t_node *node)
-{
-	t_node	*current;
-
-	current = stack->top;
-	if (!stack->size)
-		return (NULL);
-	if (stack->size == 1)
-		return (current);
-	if (node->value > stack->max->value)
-		return (stack->max);
-	if (node->value < stack->min->value)
-		return (stack->max);
-	while (current->next)
-	{
-		if (node->value < current->value)
-			if (node->value > current->next->value)
-				return (current->next); //return (current); 
-		current = current->next;
-	}
-	if (node->value < stack->top->value && node->value > current->value)
-		return (current);
-	//printf("\t\t\t");
-	//return (NULL);
-	return (stack->top);
-	//return (stack->min);
-}
-
 void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op)
 {
 	if (!op)
@@ -135,60 +107,4 @@ void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op)
 	if (!ft_strncmp(op, "rra", 3))
 		while (cost--)
 			rra(a);
-}
-
-void	do_cheapest_to_b(t_stack *a, t_stack *b)
-{
-	size_t	total;
-	size_t	best;
-	t_node	*cheapest;
-	t_node	*node;
-	t_node	*on_top_of_what;
-
-	t_instr	a_instr;
-	t_instr	b_instr;
-
-	cheapest = NULL;
-	best = INT_MAX;
-	node = a->top;
-	while(node)
-	{
-		on_top_of_what = get_node(b, node);
-		printf("node %i on top of %p ; ", node->value, on_top_of_what);
-		get_pop_info(a, node, &a_instr, 'a');
-		get_pop_info(b, on_top_of_what, &b_instr, 'b');
-		total = a_instr.cost + b_instr.cost;
-		printf("rot_cost_a: %i ; ", (int)a_instr.cost);
-		printf("rot_cost_b: %i\n", (int)b_instr.cost);
-		if (!cheapest || total < best)
-		{
-			cheapest = node;
-			best = total;
-		}
-		node = node->next;
-	}
-	if (!cheapest)
-		return ;
-	printf("\tbest_node: %i ; total: %i\n", cheapest->value, (int)best);
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
-
-	get_pop_info(a, cheapest, &a_instr, 'a');
-	get_pop_info(b, get_node(b, cheapest), &b_instr, 'b');
-	if (ft_strlen(a_instr.operation) == ft_strlen(b_instr.operation))
-	{
-		if (!ft_strncmp(a_instr.operation, "ra", 2))
-			while(a_instr.cost && b_instr.cost && a_instr.cost-- && b_instr.cost--)
-				rr(a, b);
-		else if (!ft_strncmp(a_instr.operation, "rra", 2))
-			while(a_instr.cost && b_instr.cost && a_instr.cost-- && b_instr.cost--)
-				rrr(a, b);
-	}
-	do_op(a, b, a_instr.cost, a_instr.operation);
-	do_op(a, b, b_instr.cost, b_instr.operation);
-	do_op(a, b, 1, "pb");
-
-	printf("\n");
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
 }
