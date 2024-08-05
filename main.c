@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 08:25:36 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:48:35 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,14 @@ int	main(int argc, char **argv)
 	}
 	a = init_stack(argc, argv); //if a = NULL, error
 	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
-	pb(a, b);
-	pb(a, b);
-	while (a->size)
-		do_cheapest_a_to_b(a, b);
-	t_instr	b_instr;
-	get_pop_info(b, b->max, &b_instr, 'b');
-	do_op(a, b, b_instr.cost, b_instr.operation);
-	while (b->size)
-		pa(a, b);
+	algo(a, b);
 	//ft_printf("is a ordered? %i\n", is_ordered(a, 0));
 	//if (!b->max)
 	//	ft_printf("\tstack_b->max = %p\n", b->max);
 	//if (!b->min)
 	//	ft_printf("\tstack_b->min = %p\n", b->min);
 	//selection_sort(a, b);
-	print_stack(a->top, 1);
-	print_stack(b->top, 2);
+	//print_stack(a->top, 1);
+	//print_stack(b->top, 2);
 	return 0;
 }

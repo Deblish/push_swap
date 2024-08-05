@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:03:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:43:18 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:57:23 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b)
 		get_pop_info(b, get_target_a_to_b(b, node), &b_instr, 'b');
 		//printf("rot_cost_a: %i ; ", (int)a_instr.cost);
 		//printf("rot_cost_b: %i\n", (int)b_instr.cost);
-		if (!cheapest || a_instr.cost + b_instr.cost < best)
+		if (!cheapest || a_instr.cost + b_instr.cost + (node != a->top) < best)
 		{
 			cheapest = node;
 			best = a_instr.cost + b_instr.cost;
@@ -98,4 +98,25 @@ void	do_cheapest_a_to_b(t_stack *a, t_stack *b)
 	//printf("\n");
 	//print_stack(a->top, 1);
 	//print_stack(b->top, 2);
+}
+
+void	sort_three_a(t_stack *a)
+{
+	t_node	*first;
+	t_node	*second;
+	t_node	*third;
+
+	if (a->size != 3 || is_ordered(a, 0))
+		return ;
+	while (!is_ordered(a, 0))
+	{
+		first = a->top;
+		second = first->next;
+		third = second->next;
+		if (first->value > second->value)
+			sa(a);
+		if (second->value > third->value)
+			rra(a);
+	}
+	return ;
 }

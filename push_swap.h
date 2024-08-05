@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 15:03:06 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:23:02 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op);
 t_node	*get_target_a_to_b(t_stack *stack, t_node *node);
 t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b);
 void	do_cheapest_a_to_b(t_stack *a, t_stack *b);
+void	sort_three_a(t_stack *a);
+
+void	algo(t_stack *a, t_stack *b);
 
 void	low_extractor(t_stack *a, t_stack *b);
 void	selection_sort(t_stack *a, t_stack *b);
