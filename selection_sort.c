@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:38:34 by aapadill          #+#    #+#             */
-/*   Updated: 2024/07/22 21:45:41 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:13:31 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	low_extractor(t_stack *a, t_stack *b)
 {
-	//ft_printf("I entered");
 	t_node	*i;
 	t_node	*low;
 	size_t moves;

@@ -6,11 +6,10 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:42:57 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:13:13 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>//------------------erase
 #include "push_swap.h"
 
 void	update_min_and_max(t_stack *stack, t_node *new_node)

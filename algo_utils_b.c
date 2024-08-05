@@ -6,11 +6,10 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:01:55 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 14:09:25 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:12:32 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> //------------------------erase
 #include "push_swap.h"
 
 t_node	*get_target_b_to_a(t_stack *stack, t_node *node)
@@ -36,7 +35,7 @@ t_node	*get_target_b_to_a(t_stack *stack, t_node *node)
 	if (node->value > stack->top->value)
 		if (node->value < current->value)
 			return (current);
-	//printf("\t\t\t");
+	//ft_printf("\t\t\t");
 	//return (NULL);
 	return (stack->top);
 	//return (stack->min);
