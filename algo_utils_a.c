@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:03:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 10:57:23 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:15:54 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b)
 		}
 		node = node->next;
 	}
+	//printf("\ttotal: %i", (int)best);
 	return (cheapest);
 }
 
@@ -78,7 +79,7 @@ void	do_cheapest_a_to_b(t_stack *a, t_stack *b)
 	cheapest = find_cheapest_a_to_b(a, b);
 	if (!cheapest) //stack a is empty
 		return ;
-	//printf("\tbest_node: %i ; total: %i\n", cheapest->value, (int)best);
+	//printf("\tbest_node: %i\n", cheapest->value);
 	//print_stack(a->top, 1);
 	//print_stack(b->top, 2);
 	get_pop_info(a, cheapest, &a_instr, 'a');
@@ -106,16 +107,16 @@ void	sort_three_a(t_stack *a)
 	t_node	*second;
 	t_node	*third;
 
-	if (a->size != 3 || is_ordered(a, 0))
+	if (a->size > 3 || is_ordered(a, 0))
 		return ;
 	while (!is_ordered(a, 0))
 	{
 		first = a->top;
 		second = first->next;
 		third = second->next;
-		if (first->value > second->value)
+		if (first && second && first->value > second->value)
 			sa(a);
-		if (second->value > third->value)
+		if (second && third && second->value > third->value)
 			rra(a);
 	}
 	return ;

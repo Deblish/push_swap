@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 10:48:35 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:16:23 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	int	old_argc;
-	int n;
+	int	n;
+	int	gotta_free;
 
+	gotta_free = 0;
 	if (argc < 2)
 		return (0);
 	old_argc = argc;
-	if (argc == 2)
+	if (argc == 2 && ++gotta_free)
 		argv = ft_split(argv[1], ' ', &argc);
 	else if (argc == old_argc)
 	{
@@ -37,19 +39,30 @@ int	main(int argc, char **argv)
 		{
 			//ft_printf("%s\n", argv[n]);
 			ft_printf("Error\n");
+			if (gotta_free)
+			{
+				while(argc--)
+					free(argv[argc]);
+				free(argv);
+			}
 			return (1);
 		}
 	}
 	a = init_stack(argc, argv); //if a = NULL, error
 	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
 	algo(a, b);
-	//ft_printf("is a ordered? %i\n", is_ordered(a, 0));
-	//if (!b->max)
-	//	ft_printf("\tstack_b->max = %p\n", b->max);
-	//if (!b->min)
-	//	ft_printf("\tstack_b->min = %p\n", b->min);
 	//selection_sort(a, b);
 	//print_stack(a->top, 1);
 	//print_stack(b->top, 2);
+	while(a->size)
+		free(pop(a));
+	free(a);
+	free(b);
+	if (gotta_free)
+	{
+		while(argc--)
+			free(argv[argc]);
+		free(argv);
+	}
 	return 0;
 }

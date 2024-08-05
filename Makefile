@@ -13,6 +13,7 @@ SRC_SOURCES = main.c \
 			  algo_utils.c \
 			  algo_utils_a.c \
 			  algo_utils_b.c \
+			  algo.c \
 			  ../libft/ft_atoi.c \
 			  ../libft/ft_isdigit.c \
 			  ../libft/ft_split.c \

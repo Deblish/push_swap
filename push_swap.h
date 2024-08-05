@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 10:23:02 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:10:45 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ t_node	*get_target_a_to_b(t_stack *stack, t_node *node);
 t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b);
 void	do_cheapest_a_to_b(t_stack *a, t_stack *b);
 void	sort_three_a(t_stack *a);
+
+t_node	*get_target_b_to_a(t_stack *stack, t_node *node);
+void	do_move_b_to_a(t_stack *a, t_stack *b);
 
 void	algo(t_stack *a, t_stack *b);
 

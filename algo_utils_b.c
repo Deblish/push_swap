@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:01:55 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 10:45:21 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:09:25 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,4 @@ void	do_move_b_to_a(t_stack *a, t_stack *b)
 	do_op(a, b, a_instr.cost, a_instr.operation);
 	do_op(a, b, b_instr.cost, b_instr.operation);
 	do_op(a, b, 1, "pa");
-}
-
-void	algo(t_stack *a, t_stack *b)
-{
-	pb(a, b);
-	pb(a, b);
-	while (a->size > 3)
-		do_cheapest_a_to_b(a, b);
-	sort_three_a(a);
-	while(b->size)
-		do_move_b_to_a(a, b);
 }
