@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 16:23:35 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:39:38 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	is_ordered(t_stack *stack, int from_max)
 void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 {
 	size_t	forward;
-	size_t	backward;
 	t_node	*current;
 
 	forward = 0;
@@ -54,8 +53,7 @@ void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 		forward++;
 		current = current->next;
 	}
-	backward = stack->size - forward;
-	if (forward < backward)
+	if (forward < (stack->size - forward))
 	{
 		instr->cost = forward;
 		if (s == 'a')
@@ -64,7 +62,7 @@ void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 			instr->op = "rb";
 		return ;
 	}
-	instr->cost = backward;
+	instr->cost = stack->size - forward;
 	if (s == 'a')
 		instr->op = "rra";
 	else if (s == 'b')
