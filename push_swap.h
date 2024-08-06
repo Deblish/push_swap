@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 14:10:45 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:07:40 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include "../ft_printf/include/ft_printf.h"
 # include "../libft/libft.h"
 
-typedef struct	s_node
+typedef struct s_node
 {
-	int			value;
+	int				value;
 	struct s_node	*next;
 }	t_node;
 
@@ -33,10 +33,10 @@ typedef struct s_stack
 	t_node	*min;
 }	t_stack;
 
-typedef struct	s_instruction
+typedef struct s_instruction
 {
-	size_t	cost;
-	const char	*operation;
+	size_t		cost;
+	const char	*op;
 }	t_instr;
 
 t_node	*init_node(int value);
@@ -65,6 +65,7 @@ void	rrr(t_stack *a, t_stack *b);
 void	update_min_and_max(t_stack *stack, t_node *new_node);
 int		is_ordered(t_stack *stack, int from_max);
 void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s);
+int		op_reducer(t_instr *a, t_instr *b);
 void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op);
 
 t_node	*get_target_a_to_b(t_stack *stack, t_node *node);

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/05 16:10:28 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:22:26 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int	old_argc;
-	int	n;
-	int	gotta_free;
+	int		old_argc;
+	int		n;
+	int		gotta_free;
 
 	gotta_free = 0;
 	if (argc < 2)
@@ -36,32 +36,39 @@ int	main(int argc, char **argv)
 	{
 		if (!argv[n] || int_overflows(argv[n]) || has_duplicates(n, argv))
 		{
-			//ft_printf("%s\n", argv[n]);
 			ft_printf("Error\n");
 			if (gotta_free)
 			{
-				while(argc--)
+				while (argc--)
 					free(argv[argc]);
 				free(argv);
 			}
-			return (1);
+			return (0);
 		}
 	}
-	a = init_stack(argc, argv); //if a = NULL, error
-	b = init_stack(0, argv); //if b = NULL, error, but you gotta free a?
+	a = init_stack(argc, argv);
+	if (!a)
+		return (0);
+	b = init_stack(0, argv);
+	if (!b)
+	{
+		while (a->size)
+			free(pop(a));
+		free(a);
+		return (0);
+	}
 	algo(a, b);
-	//selection_sort(a, b);
 	//print_stack(a->top, 1);
 	//print_stack(b->top, 2);
-	while(a->size)
+	while (a->size)
 		free(pop(a));
 	free(a);
 	free(b);
 	if (gotta_free)
 	{
-		while(argc--)
+		while (argc--)
 			free(argv[argc]);
 		free(argv);
 	}
-	return 0;
+	return (1);
 }
