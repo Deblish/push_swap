@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:01:55 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 12:16:36 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:24:43 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	do_move_b_to_a(t_stack *a, t_stack *b)
 		return ;
 	get_pop_info(a, target, &a_instr, 'a');
 	if (!ft_strncmp(a_instr.op, "ra", 2))
-		do_op(a, b, op_reducer(&a_instr, &b_instr), "rr");
+		do_op(a, b, op_reducer(&a_instr, &b_instr, 1), "rr");
 	else if (!ft_strncmp(a_instr.op, "rra", 3))
-		do_op(a, b, op_reducer(&a_instr, &b_instr), "rrr");
+		do_op(a, b, op_reducer(&a_instr, &b_instr, 1), "rrr");
 	do_op(a, b, a_instr.cost, a_instr.op);
 	do_op(a, b, b_instr.cost, b_instr.op);
 	do_op(a, b, 1, "pa");

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:16:54 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:52:14 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:57:07 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 */
 void	swap(t_stack *stack)
 {
-	t_node *top;
-	t_node *below;
+	t_node	*top;
+	t_node	*below;
 
 	if (stack->size < 2)
 		return ;
@@ -34,8 +34,6 @@ void	swap(t_stack *stack)
 	top->next = below->next;
 	below->next = top;
 	stack->top = below;
-	//update_min_and_max(stack, top);
-	//update_min_and_max(stack, below);
 }
 
 void	sa(t_stack *a)

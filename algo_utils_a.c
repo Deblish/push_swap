@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:03:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 12:21:49 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:27:47 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,23 @@ t_node	*get_target_a_to_b(t_stack *stack, t_node *node)
 
 t_node	*find_cheapest_a_to_b(t_stack *a, t_stack *b)
 {
-	size_t	best;
-	size_t	total;
+	size_t	x;
 	t_node	*cheapest;
 	t_node	*node;
 	t_instr	a_instr;
 	t_instr	b_instr;
 
-	best = INT_MAX;
+	x = INT_MAX;
 	cheapest = NULL;
 	node = a->top;
-	while(node)
+	while (node)
 	{
 		get_pop_info(a, node, &a_instr, 'a');
 		get_pop_info(b, get_target_a_to_b(b, node), &b_instr, 'b');
-		//if (a_instr.cost + b_instr.cost + (node != a->top) < best)
-		total = op_reducer(&a_instr, &b_instr) + a_instr.cost + b_instr.cost; 
-		if (total < best)
+		if (a_instr.cost + b_instr.cost - op_reducer(&a_instr, &b_instr, 0) < x)
 		{
 			cheapest = node;
-			//best = a_instr.cost + b_instr.cost;
-			best = total;
+			x = a_instr.cost + b_instr.cost - op_reducer(&a_instr, &b_instr, 0);
 		}
 		node = node->next;
 	}
@@ -78,9 +74,9 @@ void	do_cheapest_a_to_b(t_stack *a, t_stack *b)
 	get_pop_info(a, cheapest, &a_instr, 'a');
 	get_pop_info(b, get_target_a_to_b(b, cheapest), &b_instr, 'b');
 	if (!ft_strncmp(a_instr.op, "ra", 2))
-		do_op(a, b, op_reducer(&a_instr, &b_instr), "rr");
+		do_op(a, b, op_reducer(&a_instr, &b_instr, 1), "rr");
 	else if (!ft_strncmp(a_instr.op, "rra", 3))
-		do_op(a, b, op_reducer(&a_instr, &b_instr), "rrr");
+		do_op(a, b, op_reducer(&a_instr, &b_instr, 1), "rrr");
 	do_op(a, b, a_instr.cost, a_instr.op);
 	do_op(a, b, b_instr.cost, b_instr.op);
 	do_op(a, b, 1, "pb");

@@ -9,7 +9,6 @@ SRC_SOURCES = main.c \
 			  stack_operation_swap.c \
 			  stack_operation_reverse.c \
 			  stack_operation_rotate.c \
-			  selection_sort.c \
 			  algo_utils.c \
 			  algo_utils_a.c \
 			  algo_utils_b.c \

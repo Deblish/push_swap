@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 12:14:28 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:23:35 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	is_ordered(t_stack *stack, int from_max)
 	while (second)
 	{
 		if (!from_max && first->value > second->value)
-			break;
+			break ;
 		if (from_max && first->value < second->value)
-			break;
+			break ;
 		first = second;
 		second = second->next;
 	}
@@ -49,18 +49,10 @@ void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 
 	forward = 0;
 	current = stack->top;
-	if (!instr)
-		return ;
 	while (current && current != stop)
 	{
 		forward++;
 		current = current->next;
-	}
-	if (!current)
-	{
-		instr->cost = 0;
-		instr->op = NULL;
-		return ;
 	}
 	backward = stack->size - forward;
 	if (forward < backward)
@@ -70,35 +62,31 @@ void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s)
 			instr->op = "ra";
 		else if (s == 'b')
 			instr->op = "rb";
+		return ;
 	}
-	else
-	{
-		instr->cost = backward;
-		if (s == 'a')
-			instr->op = "rra";
-		else if (s == 'b')
-			instr->op = "rrb";
-	}
+	instr->cost = backward;
+	if (s == 'a')
+		instr->op = "rra";
+	else if (s == 'b')
+		instr->op = "rrb";
 }
 
-int	op_reducer(t_instr *a, t_instr *b)
+int	op_reducer(t_instr *a, t_instr *b, int save)
 {
-	int	rr;
-	int	rrr;
+	int	count;
 
-	rr = 0;
-	rrr = 0;
-	if (!ft_strncmp(a->op, "ra", 2) && !ft_strncmp(b->op, "rb", 2))
+	count = 0;
+	if ((!ft_strncmp(a->op, "ra", 2) && !ft_strncmp(b->op, "rb", 2))
+		|| (!ft_strncmp(a->op, "rra", 3) && !ft_strncmp(b->op, "rrb", 3)))
 	{
-		while(a->cost && b->cost && a->cost-- && b->cost--)
-			rr++;
-		return (rr);
-	}
-	if (!ft_strncmp(a->op, "rra", 3) && !ft_strncmp(b->op, "rrb", 3))
-	{
-		while(a->cost && b->cost && a->cost-- && b->cost--)
-			rrr++;
-		return (rrr);
+		while (a->cost && b->cost && a->cost-- && b->cost--)
+			count++;
+		if (!save)
+		{
+			a->cost += count;
+			b->cost += count;
+		}
+		return (count);
 	}
 	return (0);
 }
@@ -107,10 +95,10 @@ void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op)
 {
 	if (!ft_strncmp(op, "pa", 2))
 		while (cost--)
-			pa(a,b);
-	else if(!ft_strncmp(op, "pb", 2))
+			pa(a, b);
+	else if (!ft_strncmp(op, "pb", 2))
 		while (cost--)
-			pb(a,b);
+			pb(a, b);
 	else if (!ft_strncmp(op, "ra", 2))
 		while (cost--)
 			ra(a);

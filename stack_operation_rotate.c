@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:19:01 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:52:55 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:34:17 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	rotate(t_stack *stack)
 	ex_top = stack->top;
 	bottom = stack->top->next;
 	stack->top = bottom;
-	while(bottom->next)
+	while (bottom->next)
 		bottom = bottom->next;
 	bottom->next = ex_top;
 	ex_top->next = NULL;

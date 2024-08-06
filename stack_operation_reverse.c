@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:20:26 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:53:25 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:50:58 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	reverse_rotate(t_stack *stack)
 		return ;
 	before_bottom = stack->top;
 	bottom = before_bottom->next;
-	while(bottom->next)
+	while (bottom->next)
 	{
 		before_bottom = bottom;
 		bottom = bottom->next;

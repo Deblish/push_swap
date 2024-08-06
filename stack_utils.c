@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/04 14:59:21 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:57:53 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_node	*init_node(int value)
 {
-	//ft_printf("init_node\n");
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
@@ -46,7 +45,6 @@ int	fill_stack(t_stack *stack, int argc, char **argv)
 
 t_stack	*init_stack(int argc, char **argv)
 {
-	//ft_printf("init_stack\n");
 	t_stack	*new_stack;
 
 	new_stack = malloc(sizeof(t_stack));

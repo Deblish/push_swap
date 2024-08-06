@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 11:07:40 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:30:53 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	rrr(t_stack *a, t_stack *b);
 void	update_min_and_max(t_stack *stack, t_node *new_node);
 int		is_ordered(t_stack *stack, int from_max);
 void	get_pop_info(t_stack *stack, t_node *stop, t_instr *instr, char s);
-int		op_reducer(t_instr *a, t_instr *b);
+int		op_reducer(t_instr *a, t_instr *b, int save);
 void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op);
 
 t_node	*get_target_a_to_b(t_stack *stack, t_node *node);
@@ -78,6 +78,4 @@ void	do_move_b_to_a(t_stack *a, t_stack *b);
 
 void	algo(t_stack *a, t_stack *b);
 
-void	low_extractor(t_stack *a, t_stack *b);
-void	selection_sort(t_stack *a, t_stack *b);
 #endif
