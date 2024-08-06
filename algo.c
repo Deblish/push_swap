@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:08:35 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 09:36:32 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 17:32:22 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	algo(t_stack *a, t_stack *b)
 {
-	if (is_ordered(a, 0))
+	if (!a || !a->size || is_ordered(a, 0))
 		return ;
 	if (a->size == 3 || a->size == 2)
 	{
