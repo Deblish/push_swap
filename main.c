@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 16:25:14 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/06 18:34:11 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	{
 		if (!argv[n] || int_overflows(argv[n]) || has_duplicates(n, argv))
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			if (gotta_free)
 			{
 				while (argc--)

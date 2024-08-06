@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address #-Wsign-conversion
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address #-Wsign-conversion
 
 SRC_SOURCES = main.c \
 			  stack_utils.c \
