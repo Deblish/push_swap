@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:50:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 16:39:38 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:40:57 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,4 @@ void	do_op(t_stack *a, t_stack *b, size_t cost, const char *op)
 	else if (!ft_strncmp(op, "rr", 2))
 		while (cost--)
 			rr(a, b);
-	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/07 13:08:52 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:12:10 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int	main(int argc, char **argv)
 	if (!init_both_stacks(&a, &b, argc, argv))
 		return (free_argv(fake_argv, argc, argv, 1));
 	algo(a, b);
-	//print_stack(a->top, 1);
-	//print_stack(b->top, 2);
 	free_stack(a, 0);
 	free_stack(b, 0);
 	return (free_argv(fake_argv, argc, argv, 0));
