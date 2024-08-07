@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:31:45 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 16:30:53 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:03:30 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_instruction
 t_node	*init_node(int value);
 int		fill_stack(t_stack *stack, int argc, char **argv);
 t_stack	*init_stack(int argc, char **argv);
+int		free_stack(t_stack *stack, int send_error);
 void	print_stack(t_node	*i, int option);
 
 void	push(t_stack *stack, t_node *new_node);

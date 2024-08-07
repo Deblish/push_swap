@@ -6,7 +6,7 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:59:42 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 14:57:53 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:04:10 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,7 @@ int	fill_stack(t_stack *stack, int argc, char **argv)
 	{
 		new_node = init_node(ft_atoi(argv[--argc]));
 		if (!new_node)
-		{
-			while (stack->size)
-				free(pop(stack));
-			free(stack);
-			return (0);
-		}
+			return (free_stack(stack, 1));
 		push(stack, new_node);
 	}
 	return (1);
@@ -69,4 +64,14 @@ void	print_stack(t_node	*i, int option)
 			ft_printf("\t%i\n", i->value);
 		i = i->next;
 	}
+}
+
+int	free_stack(t_stack *stack, int send_error)
+{
+	while (stack->size)
+		free(pop(stack));
+	free(stack);
+	if (send_error)
+		write(2, "Error\n", 6);
+	return (0);
 }

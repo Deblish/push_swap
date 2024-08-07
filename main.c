@@ -6,11 +6,35 @@
 /*   By: aapadill <aapadill@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:06:44 by aapadill          #+#    #+#             */
-/*   Updated: 2024/08/06 18:34:11 by aapadill         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:08:52 by aapadill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	free_argv(int fake_argv, int argc, char **argv, int send_error)
+{
+	if (fake_argv)
+	{
+		while (argc--)
+			free(argv[argc]);
+		free(argv);
+	}
+	if (send_error)
+		write(2, "Error\n", 6);
+	return (0);
+}
+
+int	init_both_stacks(t_stack **a, t_stack **b, int argc, char **argv)
+{
+	*a = init_stack(argc, argv);
+	if (!*a)
+		return (0);
+	*b = init_stack(0, argv);
+	if (!*b)
+		return (free_stack(*a, 1));
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,57 +42,26 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	int		old_argc;
 	int		n;
-	int		gotta_free;
+	int		fake_argv;
 
-	gotta_free = 0;
+	fake_argv = 0;
 	if (argc < 2)
 		return (0);
 	old_argc = argc;
-	if (argc == 2 && ++gotta_free)
+	if (argc == 2 && ++fake_argv)
 		argv = ft_split(argv[1], ' ', &argc);
-	else if (argc == old_argc)
-	{
+	else if (argc == old_argc && argv++)
 		argc--;
-		argv++;
-	}
 	n = argc;
 	while (n--)
-	{
 		if (!argv[n] || int_overflows(argv[n]) || has_duplicates(n, argv))
-		{
-			write(2, "Error\n", 6);
-			if (gotta_free)
-			{
-				while (argc--)
-					free(argv[argc]);
-				free(argv);
-			}
-			return (0);
-		}
-	}
-	a = init_stack(argc, argv);
-	if (!a)
-		return (0);
-	b = init_stack(0, argv);
-	if (!b)
-	{
-		while (a->size)
-			free(pop(a));
-		free(a);
-		return (0);
-	}
+			return (free_argv(fake_argv, argc, argv, 1));
+	if (!init_both_stacks(&a, &b, argc, argv))
+		return (free_argv(fake_argv, argc, argv, 1));
 	algo(a, b);
 	//print_stack(a->top, 1);
 	//print_stack(b->top, 2);
-	while (a->size)
-		free(pop(a));
-	free(a);
-	free(b);
-	if (gotta_free)
-	{
-		while (argc--)
-			free(argv[argc]);
-		free(argv);
-	}
-	return (1);
+	free_stack(a, 0);
+	free_stack(b, 0);
+	return (free_argv(fake_argv, argc, argv, 0));
 }
