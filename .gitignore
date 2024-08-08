@@ -1,5 +1,2 @@
-./libft/*.o
-./libft/*.a
-./ft_printf/*.o
-./push_swap_tester/*
 ./*.o
+./*.a
