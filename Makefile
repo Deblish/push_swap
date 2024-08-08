@@ -13,22 +13,22 @@ SRC_SOURCES = main.c \
 			  algo_utils_a.c \
 			  algo_utils_b.c \
 			  algo.c \
-			  ../ft_printf/src/ft_printf.c \
+#			  ../ft_printf/src/ft_printf.c \
 			  ../ft_printf/src/ft_putchar.c \
 			  ../ft_printf/src/ft_putnbr.c \
 			  ../ft_printf/src/ft_putnbr_u.c \
 			  ../ft_printf/src/ft_putstr.c \
 			  ../ft_printf/src/ft_strlen.c \
 #			  ../libft/ft_atoi.c \
-#			  ../libft/ft_isdigit.c \
-#			  ../libft/ft_split.c \
-#			  ../libft/ft_strchr.c \
-#			  ../libft/ft_substr.c \
-#			  ../libft/ft_strdup.c \
-#			  ../libft/ft_strlcpy.c \
-#			  ../libft/ft_strncmp.c \
-#			  ../libft/int_overflows.c \
-#			  ../libft/has_duplicates.c \
+			  ../libft/ft_isdigit.c \
+			  ../libft/ft_split.c \
+			  ../libft/ft_strchr.c \
+			  ../libft/ft_substr.c \
+			  ../libft/ft_strdup.c \
+			  ../libft/ft_strlcpy.c \
+			  ../libft/ft_strncmp.c \
+			  ../libft/int_overflows.c \
+			  ../libft/has_duplicates.c \
 
 SRC_OBJECTS = $(SRC_SOURCES:.c=.o)
 
@@ -39,11 +39,13 @@ all: $(NAME)
 
 $(NAME): $(SRC_OBJECTS)
 	$(MAKE) -C ./libft
-	$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a
+	$(MAKE) -C ./ft_printf
+	$(CC) $(CFLAGS) -o $@ $^ ./libft/libft.a ./ft_printf/libftprintf.a
 
 clean:
 	rm -f $(SRC_OBJECTS)
-#	$(MAKE) -C ./libft
+	$(MAKE) -C ./libft fclean
+	$(MAKE) -C ./ft_printf fclean
 
 fclean: clean
 	rm -f $(NAME)
